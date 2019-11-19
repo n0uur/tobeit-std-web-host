@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>I'm very sorrrrrrry krub _/\_</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <style>
+        * {
+            font-family: 'Kanit', sans-serif;
+            transition: 0.5s;
+        }
+
+        .header {
+            height: 300px;
+            background-image: url('./header2.jpg');
+            background-position: bottom;
+            background-size: cover;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <div id="app">
+        <div class="container bg-white pb-3 mt-md-5">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="header d-flex align-items-center justify-content-center">
+                        <h1>ToBeIT Web Technology</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2 border-bottom border-cyan">
+                <div class="col-12">
+                    <h1 class="text-center">
+                        เกริ่นก่อน
+                    </h1>
+                    <p style="text-indent: 20px;">สวัสดีครับน้อง ๆ พี่ต้องขอโทษจริง ๆ ที่เซิร์ฟเวอร์ล่มนะครับ
+                        พี่อาจจะตรวจสอบไม่ดีเอง อันนี้เป็นไฟล์ที่พี่ไปดึงมาจากเครื่องต่าง ๆ ที่น้องนั่งภายในห้อง 207
+                        นะครับ
+                        น้องสามารถดาวน์โหลดได้เลย หากมีข้อสงสัย
+                        ติดต่อพี่ได้ทันทีเลยครับ <a href="https://www.facebook.com/0ktnn" target="_BLANK">
+                            <ion-icon name="logo-facebook"></ion-icon> Facebook พี่โน
+                        </a> &#9829;
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <h3 class="text-center">เว็บไซต์ทั้งหมด</h3>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4 mb-3" v-for="index in 56">
+                    <div class="card">
+                        <img v-if="availablePC.includes(index)" src="pc.png"
+                            class="card-img-top w-50 d-block mx-auto mt-3" draggable="false">
+                        <img v-else src="pc_d.png" class="card-img-top w-50 d-block mx-auto mt-3" draggable="false">
+                        <div class="card-body text-center">
+                            <h3>
+                                {{getFileName(index)}}
+                            </h3>
+                            <button class="btn btn-success" @click="previewWeb(index)"
+                                :disabled="!availablePC.includes(index)">
+                                <ion-icon name="eye"></ion-icon> ดูหน้าเว็บ
+                            </button>
+                            <button class="btn btn-warning" @click="DownloadWeb(index)"
+                                :disabled="!availablePC.includes(index)">
+                                <ion-icon name="download"></ion-icon> ดาวน์โหลด
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                availablePC: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+                    25,
+                    26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 38, 39, 40, 41, 42, 46, 47, 48, 49, 50, 55,
+                    56
+                ]
+            },
+            methods: {
+                previewWeb(e) {
+                    window.open("./Web/" + this.getFileName(e),
+                    "_blank"); //url: './Download/' + this.getFileName(e) + '.zip',
+                },
+                DownloadWeb(e) {
+                    axios({
+                            method: 'get',
+                            url: './Download/' + this.getFileName(e) + '.zip',
+                            responseType: 'arraybuffer'
+                        })
+                        .then(response => {
+
+                            this.forceFileDownload(response)
+
+                        })
+                        .catch(() => console.log('error occured'))
+                },
+                getFileName(index) {
+                    if (index >= 10)
+                        return 'LAB 207-' + index
+                    return 'LAB 207-0' + index
+                },
+                CheckAvailable(i) {
+                    return this.availablePC.includes(index)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
