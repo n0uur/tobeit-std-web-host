@@ -106,20 +106,22 @@
             methods: {
                 previewWeb(e) {
                     window.open("./Web/" + this.getFileName(e),
-                    "_blank"); //url: './Download/' + this.getFileName(e) + '.zip',
+                    "_blank");
                 },
                 DownloadWeb(e) {
-                    axios({
-                            method: 'get',
-                            url: './Download/' + this.getFileName(e) + '.zip',
-                            responseType: 'arraybuffer'
-                        })
-                        .then(response => {
+                    // axios({
+                    //         method: 'get',
+                    //         url: './Download/' + this.getFileName(e) + '.zip',
+                    //         responseType: 'arraybuffer'
+                    //     })
+                    //     .then(response => {
 
-                            this.forceFileDownload(response)
+                    //         this.forceFileDownload(response)
 
-                        })
-                        .catch(() => console.log('error occured'))
+                    //     })
+                    //     .catch(() => console.log('error occured'))
+                    window.open("./Download/" + this.getFileName(e) + '.zip',
+                    "_blank");
                 },
                 getFileName(index) {
                     if (index >= 10)
