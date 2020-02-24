@@ -1,0 +1,9 @@
+version: '3'
+services:
+    web:
+        image: 'bitnami/apache:latest'
+        ports:
+          - '10002:8080'
+        volumes:
+          - .:/app
+        restart: always
